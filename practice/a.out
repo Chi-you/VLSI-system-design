@@ -1,0 +1,106 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-642-g3bdb50da)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 11;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_000000000018d2a0 .scope module, "Signed_unsigned_arithmetic_tb" "Signed_unsigned_arithmetic_tb" 2 3;
+ .timescale -9 -11;
+v0000000000873a30_0 .var "i_a", 3 0;
+v0000000000873ad0_0 .var "i_b", 3 0;
+v00000000008ca430_0 .var "i_c", 3 0;
+v00000000008c97b0_0 .var "i_mode", 0 0;
+v00000000008ca110_0 .net "o_answer", 7 0, L_00000000008ca610;  1 drivers
+S_000000000018d430 .scope module, "s1" "Signed_unsigned_arithmetic" 2 7, 3 3 0, S_000000000018d2a0;
+ .timescale -9 -11;
+    .port_info 0 /OUTPUT 8 "o_answer";
+    .port_info 1 /INPUT 4 "i_a";
+    .port_info 2 /INPUT 4 "i_b";
+    .port_info 3 /INPUT 4 "i_c";
+    .port_info 4 /INPUT 1 "i_mode";
+L_00000000008cb530 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+L_0000000000869c10 .functor XNOR 1, v00000000008c97b0_0, L_00000000008cb530, C4<0>, C4<0>;
+v000000000018d5c0_0 .net *"_s0", 7 0, L_00000000008ca4d0;  1 drivers
+L_00000000008cb4e8 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0000000000872c20_0 .net/2u *"_s10", 3 0, L_00000000008cb4e8;  1 drivers
+v0000000000872cc0_0 .net *"_s12", 7 0, L_00000000008cac50;  1 drivers
+v0000000000872db0_0 .net *"_s17", 0 0, L_00000000008cb150;  1 drivers
+v0000000000873850_0 .net *"_s18", 3 0, L_00000000008c9a30;  1 drivers
+v0000000000873b70_0 .net *"_s20", 7 0, L_00000000008cad90;  1 drivers
+v0000000000873170_0 .net *"_s23", 0 0, L_00000000008c98f0;  1 drivers
+v0000000000873210_0 .net *"_s24", 3 0, L_00000000008c9850;  1 drivers
+v0000000000873350_0 .net *"_s26", 7 0, L_00000000008ca6b0;  1 drivers
+v0000000000873030_0 .net *"_s29", 7 0, L_00000000008cb290;  1 drivers
+L_00000000008cb458 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0000000000872e50_0 .net *"_s3", 3 0, L_00000000008cb458;  1 drivers
+v00000000008732b0_0 .net *"_s31", 0 0, L_00000000008c9490;  1 drivers
+v0000000000873c10_0 .net *"_s32", 3 0, L_00000000008c9530;  1 drivers
+v00000000008733f0_0 .net *"_s34", 7 0, L_00000000008c9990;  1 drivers
+v0000000000873490_0 .net/2u *"_s38", 0 0, L_00000000008cb530;  1 drivers
+v0000000000873530_0 .net *"_s4", 7 0, L_00000000008c9ad0;  1 drivers
+v00000000008735d0_0 .net *"_s40", 0 0, L_0000000000869c10;  1 drivers
+L_00000000008cb4a0 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v00000000008730d0_0 .net *"_s7", 3 0, L_00000000008cb4a0;  1 drivers
+v0000000000873990_0 .net *"_s9", 7 0, L_00000000008cab10;  1 drivers
+v0000000000872ef0_0 .net "answer_signed", 7 0, L_00000000008c9c10;  1 drivers
+v0000000000873670_0 .net "answer_unsigned", 7 0, L_00000000008ca570;  1 drivers
+v0000000000873710_0 .net "i_a", 3 0, v0000000000873a30_0;  1 drivers
+v0000000000873cb0_0 .net "i_b", 3 0, v0000000000873ad0_0;  1 drivers
+v0000000000872f90_0 .net "i_c", 3 0, v00000000008ca430_0;  1 drivers
+v00000000008737b0_0 .net "i_mode", 0 0, v00000000008c97b0_0;  1 drivers
+v00000000008738f0_0 .net "o_answer", 7 0, L_00000000008ca610;  alias, 1 drivers
+L_00000000008ca4d0 .concat [ 4 4 0 0], v0000000000873a30_0, L_00000000008cb458;
+L_00000000008c9ad0 .concat [ 4 4 0 0], v0000000000873ad0_0, L_00000000008cb4a0;
+L_00000000008cab10 .arith/mult 8, L_00000000008ca4d0, L_00000000008c9ad0;
+L_00000000008cac50 .concat [ 4 4 0 0], v00000000008ca430_0, L_00000000008cb4e8;
+L_00000000008ca570 .arith/sum 8, L_00000000008cab10, L_00000000008cac50;
+L_00000000008cb150 .part v0000000000873a30_0, 3, 1;
+L_00000000008c9a30 .concat [ 1 1 1 1], L_00000000008cb150, L_00000000008cb150, L_00000000008cb150, L_00000000008cb150;
+L_00000000008cad90 .concat [ 4 4 0 0], v0000000000873a30_0, L_00000000008c9a30;
+L_00000000008c98f0 .part v0000000000873ad0_0, 3, 1;
+L_00000000008c9850 .concat [ 1 1 1 1], L_00000000008c98f0, L_00000000008c98f0, L_00000000008c98f0, L_00000000008c98f0;
+L_00000000008ca6b0 .concat [ 4 4 0 0], v0000000000873ad0_0, L_00000000008c9850;
+L_00000000008cb290 .arith/mult 8, L_00000000008cad90, L_00000000008ca6b0;
+L_00000000008c9490 .part v00000000008ca430_0, 3, 1;
+L_00000000008c9530 .concat [ 1 1 1 1], L_00000000008c9490, L_00000000008c9490, L_00000000008c9490, L_00000000008c9490;
+L_00000000008c9990 .concat [ 4 4 0 0], v00000000008ca430_0, L_00000000008c9530;
+L_00000000008c9c10 .arith/sum 8, L_00000000008cb290, L_00000000008c9990;
+L_00000000008ca610 .functor MUXZ 8, L_00000000008c9c10, L_00000000008ca570, L_0000000000869c10, C4<>;
+    .scope S_000000000018d2a0;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000008c97b0_0, 0, 1;
+    %pushi/vec4 2, 0, 4;
+    %store/vec4 v0000000000873a30_0, 0, 4;
+    %pushi/vec4 3, 0, 4;
+    %store/vec4 v0000000000873ad0_0, 0, 4;
+    %pushi/vec4 4, 0, 4;
+    %store/vec4 v00000000008ca430_0, 0, 4;
+    %delay 5000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000008c97b0_0, 0, 1;
+    %pushi/vec4 15, 0, 4;
+    %store/vec4 v0000000000873a30_0, 0, 4;
+    %pushi/vec4 14, 0, 4;
+    %store/vec4 v0000000000873ad0_0, 0, 4;
+    %pushi/vec4 3, 0, 4;
+    %store/vec4 v00000000008ca430_0, 0, 4;
+    %delay 10000, 0;
+    %vpi_call 2 26 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_000000000018d2a0;
+T_1 ;
+    %vpi_call 2 30 "$dumpfile", "unsigned.vcd" {0 0 0};
+    %vpi_call 2 31 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "unsigned_tb.v";
+    "././unsigned.v";

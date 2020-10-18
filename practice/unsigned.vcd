@@ -1,0 +1,53 @@
+$date
+	Wed Oct 14 12:53:50 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	10ps
+$end
+$scope module Signed_unsigned_arithmetic_tb $end
+$var wire 8 ! o_answer [7:0] $end
+$var reg 4 " i_a [3:0] $end
+$var reg 4 # i_b [3:0] $end
+$var reg 4 $ i_c [3:0] $end
+$var reg 1 % i_mode $end
+$scope module s1 $end
+$var wire 4 & i_a [3:0] $end
+$var wire 4 ' i_b [3:0] $end
+$var wire 4 ( i_c [3:0] $end
+$var wire 1 % i_mode $end
+$var wire 8 ) o_answer [7:0] $end
+$var wire 8 * answer_unsigned [7:0] $end
+$var wire 8 + answer_signed [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1010 +
+b1010 *
+b1010 )
+b100 (
+b11 '
+b10 &
+0%
+b100 $
+b11 #
+b10 "
+b1010 !
+$end
+#5000
+b101 !
+b101 )
+b11 $
+b11 (
+b1110 #
+b1110 '
+b11010101 *
+b101 +
+b1111 "
+b1111 &
+1%
+#15000

@@ -1,0 +1,169 @@
+#! /usr/local/iverilog/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-642-g3bdb50da)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 11;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0000000000f3f580 .scope module, "testbench" "testbench" 2 4;
+ .timescale -9 -11;
+v0000000000fa50a0_0 .var "A", 15 0;
+v0000000000fa4f60_0 .var "B", 15 0;
+v0000000000fa58c0_0 .net "Cout", 0 0, L_0000000000fa7910;  1 drivers
+v0000000000fa5500_0 .var "Mode", 0 0;
+v0000000000fa5140_0 .net "SUM", 15 0, L_0000000000fa66f0;  1 drivers
+v0000000000fa51e0_0 .var "error", 16 0;
+v0000000000fa5280 .array "expect", 0 9999, 16 0;
+v0000000000fa55a0_0 .var/i "i", 31 0;
+v0000000000fa5640 .array "mem_A", 0 9999, 15 0;
+v0000000000fa56e0 .array "mem_B", 0 9999, 15 0;
+v0000000000fa5780 .array "mem_ctrl", 0 9999, 0 0;
+S_0000000000f3aa10 .scope module, "S1" "Sub_adder_16bit" 2 27, 3 2 0, S_0000000000f3f580;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 16 "sum";
+    .port_info 1 /OUTPUT 1 "overdetect";
+    .port_info 2 /OUTPUT 1 "cout";
+    .port_info 3 /INPUT 16 "a";
+    .port_info 4 /INPUT 16 "b";
+    .port_info 5 /INPUT 1 "mode";
+L_0000000000f3a4e0 .functor NOT 16, v0000000000fa4f60_0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+v0000000000f3aba0_0 .net *"_s11", 15 0, L_0000000000fa7c30;  1 drivers
+v00000000010eb840_0 .net *"_s13", 15 0, L_0000000000fa77d0;  1 drivers
+v0000000000f43f40_0 .net *"_s15", 16 0, L_0000000000fa6790;  1 drivers
+L_0000000000fa7de8 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0000000000f38340_0 .net *"_s18", 0 0, L_0000000000fa7de8;  1 drivers
+v0000000000f383e0_0 .net *"_s19", 16 0, L_0000000000fa7550;  1 drivers
+v0000000000f3d6a0_0 .net *"_s21", 16 0, L_0000000000fa7870;  1 drivers
+L_0000000000fa7e30 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0000000000f3d740_0 .net *"_s24", 0 0, L_0000000000fa7e30;  1 drivers
+v0000000000fa5320_0 .net *"_s25", 16 0, L_0000000000fa6650;  1 drivers
+L_0000000000fa7e78 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0000000000fa5aa0_0 .net *"_s28", 0 0, L_0000000000fa7e78;  1 drivers
+v0000000000fa5960_0 .net *"_s29", 16 0, L_0000000000fa5e30;  1 drivers
+v0000000000fa5460_0 .net *"_s3", 16 0, L_0000000000fa7050;  1 drivers
+v0000000000fa4e20_0 .net *"_s31", 16 0, L_0000000000fa7230;  1 drivers
+L_0000000000fa7d58 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0000000000fa5a00_0 .net *"_s6", 0 0, L_0000000000fa7d58;  1 drivers
+v0000000000fa4d80_0 .net *"_s7", 15 0, L_0000000000f3a4e0;  1 drivers
+L_0000000000fa7da0 .functor BUFT 1, C4<0000000000000001>, C4<0>, C4<0>, C4<0>;
+v0000000000fa5820_0 .net/2u *"_s9", 15 0, L_0000000000fa7da0;  1 drivers
+v0000000000fa5000_0 .net "a", 15 0, v0000000000fa50a0_0;  1 drivers
+v0000000000fa5b40_0 .net "b", 15 0, v0000000000fa4f60_0;  1 drivers
+v0000000000fa5be0_0 .net "cout", 0 0, L_0000000000fa7910;  alias, 1 drivers
+v0000000000fa53c0_0 .net "mode", 0 0, v0000000000fa5500_0;  1 drivers
+o0000000000f4dfc8 .functor BUFZ 1, C4<z>; HiZ drive
+v0000000000fa5c80_0 .net "overdetect", 0 0, o0000000000f4dfc8;  0 drivers
+v0000000000fa4ec0_0 .net "sum", 15 0, L_0000000000fa66f0;  alias, 1 drivers
+L_0000000000fa7910 .part L_0000000000fa7230, 16, 1;
+L_0000000000fa66f0 .part L_0000000000fa7230, 0, 16;
+L_0000000000fa7050 .concat [ 16 1 0 0], v0000000000fa50a0_0, L_0000000000fa7d58;
+L_0000000000fa7c30 .arith/sum 16, L_0000000000f3a4e0, L_0000000000fa7da0;
+L_0000000000fa77d0 .concat [ 16 0 0 0], L_0000000000fa7c30;
+L_0000000000fa6790 .concat [ 16 1 0 0], L_0000000000fa77d0, L_0000000000fa7de8;
+L_0000000000fa7550 .arith/sum 17, L_0000000000fa7050, L_0000000000fa6790;
+L_0000000000fa7870 .concat [ 16 1 0 0], v0000000000fa50a0_0, L_0000000000fa7e30;
+L_0000000000fa6650 .concat [ 16 1 0 0], v0000000000fa4f60_0, L_0000000000fa7e78;
+L_0000000000fa5e30 .arith/sum 17, L_0000000000fa7870, L_0000000000fa6650;
+L_0000000000fa7230 .functor MUXZ 17, L_0000000000fa5e30, L_0000000000fa7550, v0000000000fa5500_0, C4<>;
+    .scope S_0000000000f3f580;
+T_0 ;
+    %pushi/vec4 0, 0, 17;
+    %store/vec4 v0000000000fa51e0_0, 0, 17;
+    %end;
+    .thread T_0;
+    .scope S_0000000000f3f580;
+T_1 ;
+    %vpi_call 2 20 "$readmemh", "A.txt", v0000000000fa5640 {0 0 0};
+    %vpi_call 2 21 "$readmemh", "B.txt", v0000000000fa56e0 {0 0 0};
+    %vpi_call 2 22 "$readmemh", "ctrl.txt", v0000000000fa5780 {0 0 0};
+    %vpi_call 2 23 "$readmemh", "result.txt", v0000000000fa5280 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0000000000f3f580;
+T_2 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000000000fa55a0_0, 0, 32;
+T_2.0 ;
+    %load/vec4 v0000000000fa55a0_0;
+    %cmpi/s 9999, 0, 32;
+    %flag_or 5, 4;
+    %jmp/0xz T_2.1, 5;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa5640, 4;
+    %store/vec4 v0000000000fa50a0_0, 0, 16;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa56e0, 4;
+    %store/vec4 v0000000000fa4f60_0, 0, 16;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa5780, 4;
+    %store/vec4 v0000000000fa5500_0, 0, 1;
+    %delay 2000, 0;
+    %load/vec4 v0000000000fa5140_0;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa5280, 4;
+    %parti/s 16, 0, 2;
+    %cmp/ne;
+    %jmp/0xz  T_2.2, 6;
+    %load/vec4 v0000000000fa55a0_0;
+    %addi 1, 0, 32;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa5280, 4;
+    %parti/s 16, 0, 2;
+    %vpi_call 2 44 "$display", "ERROR at time=%d(pattern%d): SUM(%h)!= expect(%h)", $time, S<1,vec4,s32>, v0000000000fa5140_0, S<0,vec4,u16> {2 0 0};
+    %load/vec4 v0000000000fa51e0_0;
+    %addi 1, 0, 17;
+    %store/vec4 v0000000000fa51e0_0, 0, 17;
+T_2.2 ;
+    %load/vec4 v0000000000fa58c0_0;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa5280, 4;
+    %parti/s 1, 16, 6;
+    %cmp/ne;
+    %jmp/0xz  T_2.4, 6;
+    %load/vec4 v0000000000fa55a0_0;
+    %addi 1, 0, 32;
+    %ix/getv/s 4, v0000000000fa55a0_0;
+    %load/vec4a v0000000000fa5280, 4;
+    %parti/s 1, 16, 6;
+    %vpi_call 2 49 "$display", "ERROR at time=%d(pattern%d): C_out(%b)!= expect(%b)", $time, S<1,vec4,s32>, v0000000000fa58c0_0, S<0,vec4,u1> {2 0 0};
+    %load/vec4 v0000000000fa51e0_0;
+    %addi 1, 0, 17;
+    %store/vec4 v0000000000fa51e0_0, 0, 17;
+T_2.4 ;
+    %load/vec4 v0000000000fa55a0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0000000000fa55a0_0, 0, 32;
+    %jmp T_2.0;
+T_2.1 ;
+    %load/vec4 v0000000000fa51e0_0;
+    %cmpi/e 0, 0, 17;
+    %jmp/0xz  T_2.6, 4;
+    %vpi_call 2 56 "$display", "        ***********************************************        " {0 0 0};
+    %vpi_call 2 57 "$display", "        **                                           **        " {0 0 0};
+    %vpi_call 2 58 "$display", "        **             Congratulations !!            **        " {0 0 0};
+    %vpi_call 2 59 "$display", "        **               Test PASS  !!               **        " {0 0 0};
+    %vpi_call 2 60 "$display", "        **                                           **        " {0 0 0};
+    %vpi_call 2 61 "$display", "        ***********************************************        " {0 0 0};
+    %jmp T_2.7;
+T_2.6 ;
+    %vpi_call 2 64 "$display", "=================================================" {0 0 0};
+    %vpi_call 2 65 "$display", "There're %d errors in your design", v0000000000fa51e0_0 {0 0 0};
+    %vpi_call 2 66 "$display", "=================================================" {0 0 0};
+T_2.7 ;
+    %vpi_call 2 69 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+    .scope S_0000000000f3f580;
+T_3 ;
+    %vpi_call 2 74 "$dumpfile", "16bitsub_adder.vcd" {0 0 0};
+    %vpi_call 2 75 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.v";
+    "././16bit_adder.v";
