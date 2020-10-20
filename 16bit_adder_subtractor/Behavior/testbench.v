@@ -6,7 +6,7 @@ module testbench();
 reg [15:0] A, B;
 reg Mode;
 wire [15:0] SUM;
-wire Cout;
+wire Cout, Overflow;
 
 reg [15:0] mem_A [9999:0];
 reg [15:0] mem_B [9999:0];
@@ -29,7 +29,8 @@ Sub_adder_16bit S1(
     .b(B),
     .mode(Mode),
     .cout(Cout),
-    .sum(SUM)
+    .sum(SUM),
+    .overdetect(Overflow)
 );
 
 integer i;
@@ -47,6 +48,11 @@ initial begin
 		
         if (Cout !== expect[i][16]) begin
             $display ("ERROR at time=%d(pattern%d): C_out(%b)!= expect(%b)", $time,  i+1, Cout, expect[i][16]);
+            error = error + 1;
+        end
+        
+        if (Overflow !== expect[i][17]) begin
+            $display ("ERROR at time=%d(pattern%d): Overflow(%b)!= expect(%b)", $time,  i+1, Overflow, expect[i][16]);
             error = error + 1;
         end
 

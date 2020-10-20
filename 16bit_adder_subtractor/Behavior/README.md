@@ -1,1 +1,1 @@
-# Behavior modeling for 16 bit adder/subtractor
+# Behavior modeling for 16 bit adder/subtractor (unsigned number)

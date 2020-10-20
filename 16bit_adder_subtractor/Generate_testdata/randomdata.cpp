@@ -1,3 +1,4 @@
+// generate the testing data
 #include <iostream>
 #include <fstream>
 #include <cstdlib>

@@ -1,3 +1,4 @@
+// generate the result of the signed data
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -7,7 +8,7 @@
 #include <iomanip>
 #define M 16
 using namespace std;
-int binAdd (bitset < M >, bitset < M >);
+int binAdd (bitset < M >, bitset < M >, int, int);
 int main(){
     fstream File, File2, File3, File4;
     stringstream ss;
@@ -34,11 +35,15 @@ int main(){
     }
     
     // (ctrl) ? A-B : A+B; 
-    int i = 0;
+    int i = 0, bsign;
+    bitset<16> a_, b_;
     bitset<20> result;
     while(File4>>x){
-        bitset<20> a = binAdd(numbers_A.at(i), (~numbers_B.at(i)+1));
-        bitset<20> b = binAdd(numbers_A.at(i), numbers_B.at(i));
+        a_=numbers_A.at(i);
+        b_=numbers_B.at(i);
+        bsign = b_[15];
+        bitset<20> a = binAdd(numbers_A.at(i), (~numbers_B.at(i)+1), bsign, x);
+        bitset<20> b = binAdd(numbers_A.at(i), numbers_B.at(i), bsign, x);
         (x) ? result = a : result = b;
         File<< setfill('0') << setw(5) << uppercase <<hex<<result.to_ulong()<<endl;
         i++;
@@ -50,8 +55,8 @@ int main(){
     File4.close();
 }
 
-int binAdd (bitset < M > atemp, bitset < M > btemp){
-    bitset < 17 > ctemp;
+int binAdd (bitset < M > atemp, bitset < M > btemp, int b, int x){
+    bitset < 18 > ctemp;
     for (int i = 0; i <= M; i++)
         ctemp[i] = 0;
     int carry = 0;
@@ -84,5 +89,6 @@ int binAdd (bitset < M > atemp, bitset < M > btemp){
         }
     }
     ctemp[M] = carry;
+    ctemp[M+1] = ((x && atemp[15] && (b == 0) && (ctemp[15]==0)) || (x && (atemp[15] == 0) && b && ctemp[15]) || ((x == 0) && (atemp[15] == 0) && (b == 0) && ctemp[15]) || ((x == 0) && atemp[15] && b && (ctemp[15]==0))) ? 1: 0;
     return ctemp.to_ulong ();
 }

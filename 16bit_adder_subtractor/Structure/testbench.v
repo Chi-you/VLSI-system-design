@@ -1,13 +1,12 @@
 `include "./16bit_rca.v"
-//`include "./addsub_16bit.v"
 `timescale 1ns/10ps
-`define delay 20 
+`define delay 10
 module testbench();
 
 reg [15:0] A, B;
 reg Mode;
 wire [15:0] SUM;
-wire Cout;
+wire Cout, Overflow;
 
 reg [15:0] mem_A [9999:0];
 reg [15:0] mem_B [9999:0];
@@ -30,7 +29,8 @@ Sub_adder_16bit S1(
     .b(B),
     .mode(Mode),
     .cout(Cout),
-    .sum(SUM)
+    .sum(SUM),
+    .of(Overflow)
 );
 
 integer i;
@@ -40,7 +40,7 @@ initial begin
         B = mem_B[i] ;
         Mode = mem_ctrl[i] ;
 
-        #(`delay);
+        # 0
         if (SUM !== expect[i][15:0]) begin
             $display ("ERROR at time=%d(pattern%d): SUM(%h)!= expect(%h)", $time, i+1, SUM, expect[i][15:0]);
             error = error + 1;
@@ -51,6 +51,10 @@ initial begin
             error = error + 1;
         end
 
+        if (Overflow !== expect[i][16]) begin
+            $display ("ERROR at time=%d(pattern%d): Overflow(%b)!= expect(%b)", $time,  i+1, Overflow, expect[i][17]);
+            error = error + 1;
+        end
     end
 
     if(error == 17'b0) begin

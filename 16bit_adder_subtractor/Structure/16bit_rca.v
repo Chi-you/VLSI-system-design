@@ -1,11 +1,11 @@
-// implement 16 bit adder by structural modeling
+// implement 16 bit adder by structural modeling (unsigned number)
 `include "./4bit_rca.v"
 
-module Sub_adder_16bit(cout, sum, a , b, mode);
+module Sub_adder_16bit(cout, of, sum, a , b, mode);
 input [15:0] a, b;
 input mode; // mode = 0: addition, mode = 1: subtraction
 output [15:0] sum;
-output cout;
+output cout, of; // detect overflow
 
 wire [15:0] y;
 
@@ -30,6 +30,8 @@ xor x13(y[12], mode, b[12]);
 xor x14(y[13], mode, b[13]);
 xor x15(y[14], mode, b[14]);
 xor x16(y[15], mode, b[15]);
+// detect overflow
+xor x17(of,cout,cout);
 
 Ripple_carry_4bit R1(
     .a(a[3:0]),
