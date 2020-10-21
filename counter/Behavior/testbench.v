@@ -1,36 +1,33 @@
 `timescale 1ns/10ps
 `include "./counter.v"
-`define delay 10
 `define clkPeriod 20
 
 module testbench();
-reg clk, rst, mode;
+reg clk, rst_n, mode;
 wire [4:0] counter;
 
 Syncounter S1(
     .mode(mode),
     .clk(clk),
-    .rst(rst),
+    .rst_n(rst_n),
     .counter(counter)
 );
 
 // clock generator
 always #(`clkPeriod/2) clk = ~clk;
 
-integer i;
 initial begin
-    rst = 1;
+    rst_n = 0;
     clk = 0;
-    mode = 1;
-    # 5   rst = 0;
-    # 107 rst = 1; // check asynchronous reset
-    # 23  rst = 0;
-    # 660 mode = 0; // check counter in mode 1
-    # 702 rst = 1; // check counter in mode 0
-    # 28  rst = 0; mode = 1; // check asynchronous reset
-    # 600 mode = 0;
-    # 600;
-    $finish;
+    mode = 0;
+    # 5   rst_n = 1;
+    # 107 rst_n = 0; // check asynchronous reset
+    # 23  rst_n = 1;
+    # 660 mode = 1; // check counter in mode 1
+    # 702 rst_n = 0; // check counter in mode 0
+    # 28  rst_n = 1; mode = 0; // check asynchronous reset
+    # 600 mode = 1;
+    # 600 $finish;
 
 
 end

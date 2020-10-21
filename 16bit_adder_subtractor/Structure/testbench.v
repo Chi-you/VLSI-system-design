@@ -1,3 +1,4 @@
+// tb for signed number
 `include "./16bit_rca.v"
 `timescale 1ns/10ps
 `define delay 10
@@ -40,7 +41,7 @@ initial begin
         B = mem_B[i] ;
         Mode = mem_ctrl[i] ;
 
-        # 0
+        # (`delay)
         if (SUM !== expect[i][15:0]) begin
             $display ("ERROR at time=%d(pattern%d): SUM(%h)!= expect(%h)", $time, i+1, SUM, expect[i][15:0]);
             error = error + 1;
@@ -51,7 +52,7 @@ initial begin
             error = error + 1;
         end
 
-        if (Overflow !== expect[i][16]) begin
+        if (Overflow !== expect[i][17]) begin
             $display ("ERROR at time=%d(pattern%d): Overflow(%b)!= expect(%b)", $time,  i+1, Overflow, expect[i][17]);
             error = error + 1;
         end

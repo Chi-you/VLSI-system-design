@@ -1,10 +1,10 @@
 `timescale 1ns/10ps
-module Syncounter(mode, clk, rst, counter);
+module Syncounter(mode, clk, rst_n, counter);
 
-input mode, clk, rst; // mode = 1: count 0 -> 30, mode = 0: count 30 -> 0
+input mode, clk, rst_n; // mode = 0: count 0 -> 30, mode = 1: count 30 -> 0
 output reg [4:0] counter;
-always @(posedge clk or posedge rst) begin
-    if (rst) begin
+always @(posedge clk or negedge rst_n) begin
+    if (rst_n == 0) begin 
         counter <= 0;
     end
     else begin    

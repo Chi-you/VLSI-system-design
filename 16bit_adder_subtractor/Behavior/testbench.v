@@ -52,7 +52,7 @@ initial begin
         end
         
         if (Overflow !== expect[i][17]) begin
-            $display ("ERROR at time=%d(pattern%d): Overflow(%b)!= expect(%b)", $time,  i+1, Overflow, expect[i][16]);
+            $display ("ERROR at time=%d(pattern%d): Overflow(%b)!= expect(%b)", $time,  i+1, Overflow, expect[i][17]);
             error = error + 1;
         end
 
