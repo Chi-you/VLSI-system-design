@@ -18,7 +18,7 @@ xor x5(y[4], mode, b[4]);
 
 RCA_5bit R1(
     .a(a),
-    .b(b),
+    .b(y),
     .cin(mode),
     .sum(sum),
     .cout(cout)

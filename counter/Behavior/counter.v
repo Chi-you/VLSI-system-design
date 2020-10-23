@@ -5,7 +5,7 @@ input mode, clk, rst_n; // mode = 0: count 0 -> 30, mode = 1: count 30 -> 0
 output reg [4:0] counter;
 always @(posedge clk or negedge rst_n) begin
     if (rst_n == 0) begin 
-        counter <= 0;
+        counter <= 5'b0;
     end
     else begin    
         if (mode && counter == 5'd30)
