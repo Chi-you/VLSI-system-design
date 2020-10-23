@@ -7,8 +7,8 @@
 module Syncounter(mode, clk, rst_n, counter);
 input mode, clk, rst_n; // mode = 0: count 0 -> 30, mode = 1: count 30 -> 0
 output [4:0] counter;
-wire [4:0] sum; 
-wire [1:0] W, O;
+wire [4:0] sum, O; 
+wire [1:0] W;
 
 IF I1(
     .a(counter),
