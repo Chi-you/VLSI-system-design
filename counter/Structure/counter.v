@@ -38,15 +38,4 @@ Subadd_5bit R1(
     .cout()
 );
 
-
-
-// Carrylookahead C1(
-//     .a(counter),
-//     .b(5'b1), // mode = 1: -1, mode = 0: +1
-//     .cin(mode),
-//     .sum(sum),
-//     .cout()
-// );
-
-
 endmodule
