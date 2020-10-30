@@ -1,4 +1,5 @@
-`include "./traffic_light.v"
+//`include "./traffic_light.v"
+`include "./traffic_light_V1.v"
 `timescale 1ns/10ps
 `define INTERVAL 10
 module testbench();

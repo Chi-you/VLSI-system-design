@@ -1,5 +1,5 @@
 /* 
-// FSM+counter (count up) 
+// FSM (traffic light) 
 // 2020/10/29 finished
 // author: Chi-you Li
 */
@@ -11,13 +11,14 @@ output R1G, R1Y, R1R, R2G, R2Y, R2R, FG, FY, FR;
 wire tg1, tg2, ty; // the signal of the
 //reg ST_o, ST; // start timer(counter)
 reg [2:0] state, next_state;
+reg [4:0] counter, counter_; // counter: counter up, counter_: count down
+
 parameter S0 = 3'b000,
           S1 = 3'b001,
           S2 = 3'b010,
           S3 = 3'b011,
           S4 = 3'b100,
           S5 = 3'b101;
-reg [4:0] counter;
 // output logic (combinational)
 // R1: road 1, R2: road 2, F: farmroad
 // G: green light, Y: yellow light, R: red light
@@ -36,26 +37,35 @@ assign tg1 = (counter == 5'd30) ? 1 : 0; // green light of road1/road2
 assign tg2 = (counter == 5'd15) ? 1 : 0; // green light of farmload
 assign ty  = (counter == 5'd5)  ? 1 : 0; // yellow light of all roads
 
+
 always@(posedge clk or negedge rst_n) begin // state register (sequential) + counter
     if(!rst_n) begin
         state <= S0;
         //ST_o <= 0;
-        counter <= 1;
+        counter <= 5'd0;
+        counter_ <= 5'd31;
     end 
     else begin
         state <= next_state;
         //ST_o <= ST;    
-        if(tg1 && (state == S0 || state == S2))
-            counter <= 1;
-        else if(tg2 && state == S4)
-            counter <= 1;
-        else if(ty && (state == S1 || state == S3 || state == S5))
-            counter <= 1;
-        else 
-            counter <= counter + 1;
+        if(tg1 && (state == S0 || state == S2)) begin
+            counter <= 5'd1;
+            counter_ <= 5'd31;
+        end
+        else if(tg2 && state == S4) begin
+            counter <= 5'd1;
+            counter_ <= 5'd16;
+        end
+        else if(ty && (state == S1 || state == S3 || state == S5)) begin
+            counter <= 5'd1;
+            counter_ <= 5'd6;
+        end
+        else begin
+            counter <= counter + 5'd1;
+            counter_ <= counter_ - 5'd1;
+        end
     end // end else
 end // end always
-
 
 
 always@(*) begin // next state logic (combinational)

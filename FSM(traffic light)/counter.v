@@ -1,8 +1,7 @@
 `timescale 1ns/10ps
 module Syncounter(ST, clk, rst_n, t1, t2, t3, counter);
 
-input ST, clk, rst_n; // mode = 0: count 0 -> 30, mode = 1: count 30 -> 0
-//input reg [2:0] state;
+input ST, clk, rst_n; 
 output t1, t2, t3;
 output reg [4:0] counter;
 always @(posedge clk or negedge rst_n) begin
