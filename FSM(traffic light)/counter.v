@@ -9,19 +9,16 @@ always @(posedge clk or negedge rst_n) begin
     if (rst_n == 0) begin 
         counter <= 5'b0;
     end
-    else if(ST) begin    
-        counter <= counter + 1'b1;
-    end
+    // else if(ST)
+    //     counter <= counter + 1'b1;
     else 
-        counter <= counter;
+        counter <= counter + 1;
 end
 // define the time of each light
-assign t1 = (counter == 5'd30) ? 1 : 0; // green light of road1/road2
-assign t2 = (counter == 5'd15) ? 1 : 0; // green light of farmload
-assign t3  = (counter == 5'd5) ? 1 : 0; // yellow light of all roads
+assign t1 = (!ST && counter == 5'd30) ? 1 : 0; // green light of road1/road2
+assign t2 = (!ST && counter == 5'd15) ? 1 : 0; // green light of farmload
+assign t3 = (!ST && counter == 5'd5)  ? 1 : 0; // yellow light of all roads
 
-always @(*) begin
-    
-end
+
 
 endmodule

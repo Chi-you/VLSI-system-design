@@ -24,10 +24,10 @@ parameter S0 = 3'b000,
           S5 = 3'b101;
 wire [4:0] counter;
 
-Syncounter S1(
+Syncounter C1(
     .ST(ST),
-    .(clk),
-    .(rst_n),
+    .clk(clk),
+    .rst_n(rst_n),
     .t1(tg1),
     .t2(tg2),
     .t3(ty),
@@ -53,23 +53,10 @@ always@(posedge clk or negedge rst_n) begin // state register (sequential) + cou
     if(!rst_n) begin
         state <= S0;
         ST_o <= 0;
-        //counter <= 1;
     end 
     else begin
         state <= next_state;
         ST_o <= ST;    
-        // if(tg1 && (state == S0 || state == S2)) begin   
-        //     counter <= 1;
-        // end
-        // else if(tg2 && state == S4) begin
-        //     counter <= 1;
-        // end
-        // else if(ty && (state == S1 || state == S3 || state == S5)) begin
-        //     counter <= 1;
-        // end
-        // else begin
-        //     counter <= counter + 1;
-        // end
     end // end else
 end // end always
 
