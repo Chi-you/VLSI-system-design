@@ -1,13 +1,12 @@
-//`include "./traffic_light.v"
-`include "./traffic_light_V1.v"
+`include "./traffic_light.v"
 `timescale 1ns/10ps
-`define INTERVAL 10
+`define Clkperiod 5
 module testbench();
 
 reg clk, rst_n, c;
 wire R1G, R1Y, R1R, R2G, R2Y, R2R, FG, FY, FR;
 
-Traffic_light T1(
+Traffic_light DUT(
     .c(c),
     .clk(clk),
     .rst_n(rst_n),
@@ -23,34 +22,26 @@ Traffic_light T1(
 );
 
 // clock generator
-always #(`INTERVAL/2) clk = ~clk;
+always #(`Clkperiod/2) clk = ~clk;
 
 initial begin
-    clk = 0;
+    clk = 1'b0;
     rst_n = 1'b0;
-    c = 0;
-    #`INTERVAL rst_n = 1;
-    // #`INTERVAL
-    // #`INTERVAL
-    // #`INTERVAL
-    // #`INTERVAL
-    // #`INTERVAL
-    // #`INTERVAL
-    // #`INTERVAL
-    # 1000 c = 1;
-    # 200  c = 0;
-    # 1000 c = 1;
-    # 100 $finish;
+    c = 1'b0;
+    # 5    rst_n = 1;
+    # 520  c = 1;
+    # 70   c = 0;
+    # 160  c = 1;
+    # 180  c = 0;
+	# 350  rst_n = 0;
+	# 30   rst_n = 1;
+	# 150  $finish;
 end
 
-// initial begin
-//     $fsdbDumpfile("counter.fsdb");
-//     $fsdbDumpvars;
-// end
 
 initial begin
-    $dumpfile("FSM.vcd");
-    $dumpvars;
+    $fsdbDumpfile("Traffic_light.fsdb");
+    $fsdbDumpvars;
 end
 
 endmodule
