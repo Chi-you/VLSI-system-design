@@ -1,0 +1,38 @@
+$date
+	Sun Nov 15 09:57:12 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	10ps
+$end
+$scope module test_tb $end
+$var wire 1 ! b $end
+$var reg 1 " a $end
+$var reg 1 # clk $end
+$scope module t1 $end
+$var wire 1 " a $end
+$var wire 1 # clk $end
+$var reg 1 ! b $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0#
+0"
+x!
+$end
+#500
+1!
+1"
+1#
+#1000
+0"
+0#
+#1500
+0!
+1#
+#2000
+0#
