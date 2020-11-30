@@ -276,7 +276,7 @@ end
 
 initial begin
     $fsdbDumpfile("CPU.fsdb");
-    $fsdbDumpvars;
+    $fsdbDumpvars("+mda");
 end
 
 endmodule
