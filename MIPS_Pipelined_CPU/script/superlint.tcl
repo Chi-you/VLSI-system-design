@@ -9,7 +9,9 @@ config_rtlds -rule  -disable -tag { ARY_MS_DRNG IDN_NR_AMKW IDN_NR_CKYW IDN_NR_S
 config_rtlds -rule  -disable -tag { REG_NR_RWRC }
 # vsd2018_constrain //
 
-analyze -v2k MIPS_CPU.v
+analyze -v2k ../MIPS_CPU.v +incdir+../adder+../define+../controlUnit+../hazard_forwarding+../memory+../pipeRegisters+../stages;
+# analyze -v2k ../src/top.v +incdir+../src+../include; ## modify your file name ## 
+
 elaborate -bbox true -top MIPS_CPU
 
 # Setup clock and reset
