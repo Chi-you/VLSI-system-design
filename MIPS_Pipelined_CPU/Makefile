@@ -1,11 +1,3 @@
-
-# root_dir := $(PWD) 
-# src_dir := $(PWD)/src
-# syn_dir := $(PWD)/syn
-# inc_dir := $(PWD)/include
-# sim_dir := $(PWD)/sim
-
-
 bld_dir  := $(PWD)/build
 add_dir  := $(PWD)/adder
 conU_dir := $(PWD)/controlUnit
