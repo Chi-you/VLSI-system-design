@@ -9,7 +9,7 @@ module dataMem (clk, rst, writeEn, readEn, address, dataIn, dataOut);
   reg [`MEM_CELL_SIZE-1:0] dataMem [0:`DATA_MEM_SIZE-1];
   wire [`WORD_LEN-1:0] base_address;
 
-  always @ (posedge clk) begin
+  always @ (negedge clk) begin
     if (rst)
       for (i = 0; i < `DATA_MEM_SIZE; i = i + 1)
         dataMem[i] <= 0;

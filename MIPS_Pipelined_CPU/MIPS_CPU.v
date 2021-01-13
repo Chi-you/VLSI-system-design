@@ -126,7 +126,10 @@ module MIPS_CPU (input CLOCK_50, input rst, input forward_EN);
 		.is_imm_out(is_imm),
 		//.ST_or_BNE_out(ST_or_BNE),
 		.branch_CMD(branch_comm),
-		.Dest()
+		.Dest(),
+		.Shamt(),
+		.Shift_Direction(),
+		.Result_sel()
 	);
 
 //=====================================================================
@@ -146,6 +149,9 @@ module MIPS_CPU (input CLOCK_50, input rst, input forward_EN);
 		.ALU_Result_MEM(ALURes_MEM),
 		.Result_WB(WB_result),
 		.Store_Value_in(ST_value_EXE),
+		.Shamt(),
+		.Shift_Direction(),
+		.Result_sel(),
 		// OUTPUTS
 		.ALU_Result(ALURes_EXE),
 		.Store_Value(ST_value_EXE2MEM)
@@ -216,6 +222,9 @@ module MIPS_CPU (input CLOCK_50, input rst, input forward_EN);
 		.WB_EN_in(WB_EN_ID),
 		.Branch_Taken_in(Br_Taken_ID),
 		.is_imm_in(),
+		.Shamt_in(),
+		.Shift_Direction_in(),
+		.Result_sel_in(),
 		// OUTPUTS
 		.Rs(src1_forw_EXE),
 		.Rt(src2_forw_EXE),
@@ -229,7 +238,10 @@ module MIPS_CPU (input CLOCK_50, input rst, input forward_EN);
 		.Mem_Write_EN(MEM_W_EN_EXE),
 		.WB_EN(WB_EN_EXE),
 		.Branch_Taken(Br_Taken_EXE),
-		.is_imm()
+		.is_imm(),
+		.Shamt(),
+		.Shift_Direction(),
+		.Result_sel()
 	);
 
 	EXE2MEM EXE2MEMReg (
