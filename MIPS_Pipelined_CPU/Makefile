@@ -30,8 +30,8 @@ rtl_full: | $(bld_dir)
 #Post-Synthesis simulation
 syn_full: | $(bld_dir)
 	cd $(bld_dir); \
-	ncverilog $(sim_dir)/top_tb.v \
-	+incdir+$(syn_dir)+$(inc_dir)+$(sim_dir) \
+	ncverilog $(sim_dir)/MIPS_CPU_tb.v \
+	+incdir+$(syn_dir)+$(conU_dir)+$(add_dir)+$(def_dir)+$(haz_dir)+$(mem_dir)+$(pipe_dir)+$(stg_dir) \
 	+define+SYN$(FSDB_DEF) \
 	+access+rwc
 	
