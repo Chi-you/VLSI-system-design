@@ -1,4 +1,5 @@
-*NOTE: All "make instruction" must execute in the MIPS_Pipelined_CPU file
+# MIPS_CPU 
+####*NOTE: All "make instruction" must execute in the MIPS_Pipelined_CPU file
 1. To compile the design (for presim): make rtl_full
 2. To compile the design (for postsim): make syn_full
 3. To compile the design (for coverage): make icc
