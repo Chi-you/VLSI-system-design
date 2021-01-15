@@ -1,13 +1,15 @@
 # MIPS_CPU 
-####*NOTE: All "make instruction" must execute in the MIPS_Pipelined_CPU file
 1. To compile the design (for presim): make rtl_full
 2. To compile the design (for postsim): make syn_full
 3. To compile the design (for coverage): make icc
 4. To run nWave with CPU.fsdb: make nwave
 5. To run superlint and execute superlint.tcl: make superlint
 6. To synthesize the design: make synthesize
+##### *NOTE: All "make instruction" must execute in the MIPS_Pipelined_CPU file
 7. The file hierachy:
+
     MIPS_Pipelined_CPU/
+
         -scipt/
             -superlint.tcl
             -synthesis.tcl
