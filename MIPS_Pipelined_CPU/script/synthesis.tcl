@@ -1,10 +1,11 @@
 # operating conditions and boundary conditions #
 # read_file MIPS_CPU.v
-read_file {../define ../} -autoread -recursive -format verilog -top MIPS_CPU
-
+gui_start
+# read_file {../define ../adder ../controlUnit ../hazard_forwarding ../memory ../pipeRegisters ../stages ../} -autoread -recursive -format verilog -top MIPS_CPU
+read_file {../src} -autoread -recursive -format verilog -top MIPS_CPU
 current_design MIPS_CPU
 
-create_clock "clk" -period 5 -waveform {}
+create_clock "clk" -period 20 -waveform {}
 set_fix_hold [get_clocks clk]
 set_dont_touch_network   [get_clocks clk]
 
@@ -27,7 +28,7 @@ set_max_area  3000
 compile
 
 
-write -format verilog -hierarchy -output ../syn/traffic_light_syn.v
+write -format verilog -hierarchy -output ../syn/MIPS_CPU_syn.v
 write_sdf -version 1.0 -context verilog ../syn/MIPS_CPU_syn.sdf
 
 

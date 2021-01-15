@@ -1,14 +1,15 @@
 bld_dir  := $(PWD)/build
-add_dir  := $(PWD)/adder
-conU_dir := $(PWD)/controlUnit
-def_dir  := $(PWD)/define
-haz_dir  := $(PWD)/hazard_forwarding
-mem_dir  := $(PWD)/memory
-pipe_dir := $(PWD)/pipeRegisters
-stg_dir  := $(PWD)/stages
+add_dir  := $(PWD)/src/adder
+conU_dir := $(PWD)/src/controlUnit
+def_dir  := $(PWD)/src/define
+haz_dir  := $(PWD)/src/hazard_forwarding
+mem_dir  := $(PWD)/src/memory
+pipe_dir := $(PWD)/src/pipeRegisters
+stg_dir  := $(PWD)/src/stages
 sim_dir  := $(PWD)/sim
-
-
+ext_dir  := $(PWD)/src
+syn_dir  := $(PWD)/syn
+ 
 ifeq ($(FSDB),1)
 FSDB_DEF := +FSDB
 endif
@@ -23,7 +24,7 @@ $(syn_dir):
 rtl_full: | $(bld_dir)
 	cd $(bld_dir); \
 	ncverilog $(sim_dir)/MIPS_CPU_tb.v \
-	+incdir+$(conU_dir)+$(add_dir)+$(def_dir)+$(haz_dir)+$(mem_dir)+$(pipe_dir)+$(stg_dir) \
+	+incdir+$(conU_dir)+$(add_dir)+$(def_dir)+$(haz_dir)+$(mem_dir)+$(pipe_dir)+$(stg_dir)+$(ext_dir)  \
 	+define+full$(FSDB_DEF) \
 	+access+rwc	
 	
@@ -31,11 +32,21 @@ rtl_full: | $(bld_dir)
 syn_full: | $(bld_dir)
 	cd $(bld_dir); \
 	ncverilog $(sim_dir)/MIPS_CPU_tb.v \
-	+incdir+$(syn_dir)+$(conU_dir)+$(add_dir)+$(def_dir)+$(haz_dir)+$(mem_dir)+$(pipe_dir)+$(stg_dir) \
-	+define+SYN$(FSDB_DEF) \
+	+incdir+$(syn_dir)+$(conU_dir)+$(add_dir)+$(def_dir)+$(haz_dir)+$(mem_dir)+$(pipe_dir)+$(stg_dir)+$(ext_dir) \
+	+define+SYN+full$(FSDB_DEF) \
 	+access+rwc
+#ICC-check
+icc: | $(bld_dir)
+	cd $(bld_dir); \
+	ncverilog $(sim_dir)/MIPS_CPU_tb.v \
+	+incdir+$(conU_dir)+$(add_dir)+$(def_dir)+$(haz_dir)+$(mem_dir)+$(pipe_dir)+$(stg_dir)+$(ext_dir) \
+	+define+full$(FSDB_DEF) \
+	+access+rwc +nccoverage+all +nccovdut+MIPS_CPU +nccovoverwrite +nccov58
 	
 #Utilities
+nwave: | $(bld_dir)
+	cd $(bld_dir); \
+	nWave CPU.fsdb &
 
 superlint: | $(bld_dir)
 	cd $(bld_dir); \
@@ -44,7 +55,7 @@ superlint: | $(bld_dir)
 synthesize: | $(bld_dir) $(syn_dir)
 	cd $(bld_dir); \
 	dc_shell -f ../script/synthesis.tcl
-
+	
 tar: clean
 	STUDENTID=$$(basename $(PWD)); \
 	cd ..;\

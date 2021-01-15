@@ -5,11 +5,11 @@ config_rtlds -rule -enable -domain { LINT AUTO_FORMAL }
 config_rtlds -rule -disable -tag { CAS_IS_DFRC SIG_IS_DLCK SIG_NO_TGFL SIG_NO_TGRS SIG_NO_TGST FSM_NO_MTRN FSM_NO_TRRN }
 # vsd2018_constrain //
 config_rtlds -rule  -disable -category { NAMING AUTO_FORMAL_DEAD_CODE AUTO_FORMAL_SIGNALS AUTO_FORMAL_ARITHMETIC_OVERFLOW }
-config_rtlds -rule  -disable -tag { ARY_MS_DRNG IDN_NR_AMKW IDN_NR_CKYW IDN_NR_SVKW ARY_NR_LBND INS_NR_PTEX INP_NO_USED OTP_NR_ASYA FLP_NR_MXCS OTP_UC_INST OTP_NR_UDRV REG_NR_TRRC INS_NR_INPR MOD_NS_GLGC } 
+config_rtlds -rule  -disable -tag { ARY_MS_DRNG IDN_NR_CKYW IDN_NR_SVKW ARY_NR_LBND INS_NR_PTEX INP_NO_USED OTP_NR_ASYA FLP_NR_MXCS OTP_UC_INST OTP_NR_UDRV REG_NR_TRRC INS_NR_INPR MOD_NS_GLGC } 
 config_rtlds -rule  -disable -tag { REG_NR_RWRC }
 # vsd2018_constrain //
 
-analyze -v2k ../MIPS_CPU.v +incdir+../adder+../define+../controlUnit+../hazard_forwarding+../memory+../pipeRegisters+../stages;
+analyze -v2k ../src/MIPS_CPU.v +incdir+../src/adder+../src/define+../src/controlUnit+../src/hazard_forwarding+../src/memory+../src/pipeRegisters+../src/stages+../src;
 # analyze -v2k ../src/top.v +incdir+../src+../include; ## modify your file name ## 
 
 elaborate -bbox true -top MIPS_CPU
